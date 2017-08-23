@@ -13,7 +13,7 @@ public class Main
     {
     	Log.setDebugMode(1);
     	Log.setLogFileDebugModus(10);
-    	Log.printLn("---startet Peltier-monitoring---", Main.class.getSimpleName(), 0);
+    	Log.printLn("---startet Arduino-monitoring---", Main.class.getSimpleName(), 0);
     	new Controller();
     }
 }
