@@ -7,6 +7,8 @@ Protokoll und Anwendung auf Seite des Arduinos:
 
 Grundsätzlich kann das Programm alle Daten auslesen die mit folgendem Protokoll vom Arduino gesendet werden. Dazu muss das USB-Kabel des Arduinos mit dem Rechner verbunden sein. 
 Im Arduino Programm:
+
+![ArduinoCode: ](https://abload.de/img/arduino_pc_ino_code2dsqy.png)
  
 Ohne Änderungen im Java-Programm können bis zu 16 Kanäle verwendet werden. Dies ist nur begrenzt weil nur 16 verschiedene Farben für die unterschiedlichen Graphen definiert wurden. Grundsätzlich wäre die Kanalanzahl erweiterbar. Bitte beachten, dass nur nummerische Werte (Int, float, long etc…) ausgelesen werden (PC-seitig wird in float umgewandelt).
 Installation
