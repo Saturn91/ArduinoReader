@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.saturn91</groupId>
-	<artifactId>calbact_peltiertest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>arduino-reader</artifactId>
+	<version>v1.0</version>
 	<packaging>jar</packaging>
 
-	<name>calbact_peltiertest</name>
+	<name>arduino-reader</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -26,7 +26,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.saturn91.calbact_peltiertest.Main</mainClass>
+							<mainClass>com.saturn91.arduinoReader.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
