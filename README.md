@@ -46,6 +46,6 @@ Abbildung 2: Fehlermeldung - Arduino nicht gefunden!
 
 
 # Downloads
--	Github Repository: https://github.com/Saturn91/Arduino-reader
--	Releases (jar): https://github.com/Saturn91/Arduino-reader/releases
+-	Github Repository: https://github.com/Saturn91/ArduinoReader
+-	Releases (jar): https://github.com/Saturn91/ArduinoReader/releases/tag/V1.0
 
