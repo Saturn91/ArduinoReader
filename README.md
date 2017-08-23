@@ -1,4 +1,4 @@
-# Anwendungsdokumentation zum Programm Calbact-Peltier-Test V1.0
+# Anwendungsdokumentation zum Programm Arduino-Reader V1.0
 
 Dieses Programm wurde im Rahmen eines Praktikums entwickelt. Sinn und Zweck ist dabei die grafische Auswertung und Aufbereitung von Messdaten eines Arduinos an einem Rechner. Dabei fungiert der Arduino als I/O-Schnittstelle (vgl. Bild). Insbesondere zeitlich veränderliche Signale die in irgendeiner Form am Arduino gemessen werden bieten sich dafür an.
 Protokoll und Anwendung auf Seite des Arduinos:
