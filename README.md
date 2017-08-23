@@ -42,7 +42,7 @@ Damit das Programm sauber arbeitet (Voraussetzung ist Punkt Installation) muss w
 
 Abbildung 1: GUI
 
-![Arduino nicht gefunden Fehler](https://abload.de/img/arduino_pc_error8fjju.png)
+![Arduino nicht gefunden Fehler](https://abload.de/img/arduino_pc_error12nsn7.png)
  
 Abbildung 2: Fehlermeldung - Arduino nicht gefunden!
 
