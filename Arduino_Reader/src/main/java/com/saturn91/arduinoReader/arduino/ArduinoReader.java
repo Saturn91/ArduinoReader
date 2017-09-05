@@ -33,6 +33,7 @@ public class ArduinoReader implements SerialPortEventListener{
 			"/dev/ttyACM0", 								// Raspberry Pi
 			"/dev/ttyUSB0", 								// Linux
 			"COM3",											// Windows
+			"COM4"											// Arduino MEGA?
 	};
 	
 	private SerialPort serialPort;							//Port the Arduino is connected to
