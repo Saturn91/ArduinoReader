@@ -1,4 +1,4 @@
-# Anwendungsdokumentation zum Programm Calbact-Peltier-Test V1.0
+# Anwendungsdokumentation zum Programm Arduino-Reader V1.0
 
 Dieses Programm wurde im Rahmen eines Praktikums entwickelt. Sinn und Zweck ist dabei die grafische Auswertung und Aufbereitung von Messdaten eines Arduinos an einem Rechner. Dabei fungiert der Arduino als I/O-Schnittstelle (vgl. Bild). Insbesondere zeitlich veränderliche Signale die in irgendeiner Form am Arduino gemessen werden bieten sich dafür an.
 Protokoll und Anwendung auf Seite des Arduinos:
@@ -11,7 +11,8 @@ Im Arduino Programm:
 ![ArduinoCode: ](https://abload.de/img/arduino_pc_ino_code2dsqy.png)
  
 Ohne Änderungen im Java-Programm können bis zu 16 Kanäle verwendet werden. Dies ist nur begrenzt weil nur 16 verschiedene Farben für die unterschiedlichen Graphen definiert wurden. Grundsätzlich wäre die Kanalanzahl erweiterbar. Bitte beachten, dass nur nummerische Werte (Int, float, long etc…) ausgelesen werden (PC-seitig wird in float umgewandelt).
-Installation
+
+# Installation
 Um das Programm zu verwenden müssen zwei Dinge vorab auf dem Rechner installiert sein.
 1.	Java 1.8 -Runtime environment 
 2.	Rtxt herunterladen: http://mfizz.com/oss/rxtx-for-java (Readme beschreibt installation)
