@@ -89,7 +89,7 @@ public class Controller{
 		if(msgs != null) {
 			for(TimeStampedStringMessage m: msgs) {
 				if(m.getMessage().contains("$") && m.getMessage().contains("#")) {
-					String[] stringValues = m.getMessage().replace("$", "").replace("#", "").split("v");
+					String[] stringValues = m.getMessage().replace("$", "").replace("#", "").split("_");
 					GraphData[] dataList = new GraphData[stringValues.length];
 					boolean[] corruptedPoint = new boolean[stringValues.length];
 
@@ -137,7 +137,7 @@ public class Controller{
 							sb.append(d.getxValue() + "\t" + d.getyValue() + "\n");
 						}
 						if(data.size() != 0) {
-							Fileprinter.printTxt(sb.toString(), "chanel_" + i + ".txt");
+							Fileprinter.printTxt(sb.toString(), GraphData.getChannelName(i) + ".txt");
 						}
 					}								
 				}
