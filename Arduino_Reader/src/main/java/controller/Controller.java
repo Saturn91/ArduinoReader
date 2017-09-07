@@ -22,17 +22,17 @@ import com.saturn91.logger.Log;
  */
 public class Controller{
 
-	
+
 
 	private static volatile boolean run = true;					//volatile means its the same variable on all Threads!
-	
+
 	//*******************Components*****************************************************************
 	private GUI gui;											//grafical user interface
 	private ArduinoReader serialCom;							//interface to communicate with arduino
 
 	//*******************Tickline- Variables********************************************************
 	private static final float minTimeBetweenUpdateMS = 5;		//The program needs less RAM if it doesen't loop as fast as possible!
-	
+
 	private static long startTime;								//last Time the update methode started (ended but its almost the same time)
 	private static long longestDelta = 0;						//longest delta
 	private static long lastTicTime = 0;						//time when the last Ticline was shown
@@ -45,10 +45,10 @@ public class Controller{
 	private static final long saveDataToFileRythS = 60;			//all 10s the Data gets saved in seperate Files (if checkbox "save Data" is checkd!)
 	private static long lastSave;								//the time in ms when the last Save was made
 	private static int chanelNum = 7;							//the number of how many Arduinochanels get observed
-	
+
 	//*******************All Graphdata***************************************************************
 	private static GraphDataContainer allData;					//The Time in ms when the programm was started
-	
+
 	private static long programStartTime;					
 	public Controller() {
 		init();
@@ -78,12 +78,12 @@ public class Controller{
 	private void update() {
 		startTime = System.currentTimeMillis();
 		gui.update();
-		
+
 		readoutArduino();
 		printData();		
 		slowProgrammDown();
 	}
-	
+
 	private void readoutArduino() {
 		ArrayList<TimeStampedStringMessage> msgs = serialCom.getlastMessages();
 		if(msgs != null) {
@@ -92,31 +92,36 @@ public class Controller{
 					String[] stringValues = m.getMessage().replace("$", "").replace("#", "").split("v");
 					GraphData[] dataList = new GraphData[stringValues.length];
 					boolean[] corruptedPoint = new boolean[stringValues.length];
+
 					for(int i = 0; i < stringValues.length; i++) {
 						try {
-							float ynum = Float.parseFloat(stringValues[i]);
+							String[] splitStrings = stringValues[i].split(":");
+							float ynum = Float.parseFloat(splitStrings[0]);
 							//xvalue will be the time when the message was received!
 							float xnum = ((float) m.getTimeStamp())/1000;
 							dataList[i] = new GraphData(i, xnum, ynum);
+							if(splitStrings.length > 1) {
+								GraphData.setName(i, splitStrings[1]);
+							}else {
+								GraphData.setName(i, "channel" + i);
+							}								
 						} catch (Exception e) {
-							Log.printErrorLn("corupted Data[" + i + "] in:" + m.getMessage(), getClass().getSimpleName(), 2);
+							Log.printErrorLn("corupted Data[" + i + "] in:" + m.getMessage(), getClass().getSimpleName(), 1);
 							corruptedPoint[i] = true;
 						}
 					}
-					
+
 					for(int i = 0; i < dataList.length; i++) {
 						if(!corruptedPoint[i]) {
 							allData.addDataPoint(dataList[i]);
 							gui.addPointToGraph(dataList[i]);
 						}						
-					}
-						
-				}
-				
+					}				
+				}				
 			}
 		}
 	}
-	
+
 	private void printData() {
 		boolean saveNow = gui.getSeettingPanel().getSaveNowFlag();
 		if(System.currentTimeMillis()-lastSave > saveDataToFileRythS*1000 || saveNow) {
@@ -142,14 +147,14 @@ public class Controller{
 			}			
 		}
 	}
-	
+
 	/**
 	 * Close Threads and stuff in other programmparts
 	 */
 	private static void stopProgramms() {
-		
+
 	}
-	
+
 	/**
 	 * Stop the Controller mainloop (and programm)
 	 */
@@ -157,7 +162,7 @@ public class Controller{
 		Log.printLn("---Stopping Mainloop and ending Programm!---", Controller.class.getSimpleName(), 0);
 		run = false;
 	}
-	
+
 	private static boolean toSlowWarning = false;			//true if the programm gets to slow
 	private static int tickCounter = 0;						//counts update cyles
 

@@ -196,6 +196,7 @@ public class GraphPanel extends PanelComponent{
 		valueGraph.setArrowSize(5);
 		valueGraph.setShowDots(false);	
 		valueGraph.setRound(2);
+		valueGraph.setGraphTextBorder(300);
 		add(valueGraph);
 	}
 
@@ -221,12 +222,12 @@ public class GraphPanel extends PanelComponent{
 	public void addPointToGraph(GraphData data) {
 		if(data.getChannel() == recordingChanel) {
 			valueGraph.addPoint(data.getChannel(), data.getxValue()-graphStartTime, data.getyValue());
-			valueGraph.addGraphName(data.getChannel(), "Channel: " + data.getChannel());
+			valueGraph.addGraphName(data.getChannel(), GraphData.getChannelName(data.getChannel()));
 			valueGraph.update();
 		}else {
 			if(!recordOnlyOneChannel) {
 				valueGraph.addPoint(data.getChannel(), data.getxValue()-graphStartTime, data.getyValue());
-				valueGraph.addGraphName(data.getChannel(), "Channel: " + data.getChannel());
+				valueGraph.addGraphName(data.getChannel(), GraphData.getChannelName(data.getChannel()));
 				valueGraph.update();
 			}			
 		}
