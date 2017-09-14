@@ -88,36 +88,40 @@ public class Controller{
 		ArrayList<TimeStampedStringMessage> msgs = serialCom.getlastMessages();
 		if(msgs != null) {
 			for(TimeStampedStringMessage m: msgs) {
-				if(m.getMessage().contains("$") && m.getMessage().contains("#")) {
-					String[] stringValues = m.getMessage().replace("$", "").replace("#", "").split("_");
-					GraphData[] dataList = new GraphData[stringValues.length];
-					boolean[] corruptedPoint = new boolean[stringValues.length];
+				if(m != null) {
+					if(m.getMessage().contains("$") && m.getMessage().contains("#")) {
+						String[] stringValues = m.getMessage().replace("$", "").replace("#", "").split("_");
+						GraphData[] dataList = new GraphData[stringValues.length];
+						boolean[] corruptedPoint = new boolean[stringValues.length];
 
-					for(int i = 0; i < stringValues.length; i++) {
-						try {
-							String[] splitStrings = stringValues[i].split(":");
-							float ynum = Float.parseFloat(splitStrings[0]);
-							//xvalue will be the time when the message was received!
-							float xnum = ((float) m.getTimeStamp())/1000;
-							dataList[i] = new GraphData(i, xnum, ynum);
-							if(splitStrings.length > 1) {
-								GraphData.setName(i, splitStrings[1]);
-							}else {
-								GraphData.setName(i, "channel" + i);
-							}								
-						} catch (Exception e) {
-							Log.printErrorLn("corupted Data[" + i + "] in:" + m.getMessage(), getClass().getSimpleName(), 1);
-							corruptedPoint[i] = true;
+						for(int i = 0; i < stringValues.length; i++) {
+							try {
+								String[] splitStrings = stringValues[i].split(":");
+								float ynum = Float.parseFloat(splitStrings[0]);
+								//xvalue will be the time when the message was received!
+								float xnum = ((float) m.getTimeStamp())/1000;
+								dataList[i] = new GraphData(i, xnum, ynum);
+								if(splitStrings.length > 1) {
+									GraphData.setName(i, splitStrings[1]);
+								}else {
+									GraphData.setName(i, "channel" + i);
+								}								
+							} catch (Exception e) {
+								Log.printErrorLn("corupted Data[" + i + "] in:" + m.getMessage(), getClass().getSimpleName(), 1);
+								corruptedPoint[i] = true;
+							}
 						}
-					}
 
-					for(int i = 0; i < dataList.length; i++) {
-						if(!corruptedPoint[i]) {
-							allData.addDataPoint(dataList[i]);
-							gui.addPointToGraph(dataList[i]);
-						}						
-					}				
-				}				
+						for(int i = 0; i < dataList.length; i++) {
+							if(!corruptedPoint[i]) {
+								allData.addDataPoint(dataList[i]);
+								gui.addPointToGraph(dataList[i]);
+							}						
+						}				
+					}
+				}else {
+					Log.printErrorLn("message was null", getClass().getSimpleName(), 1);
+				}
 			}
 		}
 	}

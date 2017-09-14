@@ -45,6 +45,12 @@ public class GraphData {
 	}
 	
 	public static String getChannelName(int id) {
-		return channelNames.get(id);
+		if(id < channelNames.size() && id >= 0) {
+			return channelNames.get(id);
+		}else {
+			Log.printErrorLn("no channel [" + id + "] got named yet", GraphData.class.getClass().getSimpleName(), 1);
+			return "";
+		}
+		
 	}
 }
