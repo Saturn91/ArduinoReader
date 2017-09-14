@@ -195,7 +195,7 @@ public class GraphPanel extends PanelComponent{
 		valueGraph.setyAxisText("[value]");
 		valueGraph.setArrowSize(5);
 		valueGraph.setShowDots(false);	
-		valueGraph.setRound(2);
+		valueGraph.setRound(6);
 		valueGraph.setGraphTextBorder(300);
 		add(valueGraph);
 	}
