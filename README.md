@@ -8,8 +8,34 @@ Protokoll und Anwendung auf Seite des Arduinos:
 Grundsätzlich kann das Programm alle Daten auslesen die mit folgendem Protokoll vom Arduino gesendet werden. Dazu muss das USB-Kabel des Arduinos mit dem Rechner verbunden sein. 
 Im Arduino Programm:
 
-![ArduinoCode:](http://abload.de/img/newprotokollm8rvp.png)
- 
+//setup:
+
+void setup() {
+
+  	Serial.begin(9600);
+ 	//… rest of your programm
+  
+}
+
+//loop
+void loop() {
+
+	float float1 = sensorValue/(1024.0f/5.0f);		//read out AI 
+
+	//------------------------Start-Protkoll---------------------------------------------------------------
+	Serial.print(“$”)						//this means Data begins
+	Serial.print(float1, 4);	//channel 0			//print float1 with 4 numbers after “.”
+	Serial.print(“:”);
+	Serial.print(“Voltage”)					//optional name for channel
+	Serial.print(“_”);					//seperates to Data values
+	Serial.print(…);		//channel 1			
+	Serial.print(“_”);					//seperates to Data values
+	Serial.print(…);		//channel 2
+	…							//max 16 Channels
+	Serial.println(“#”);					//this means end of Data
+	//---------------------/End of Protokoll--------------------------------------------------------------			
+}
+
 Ohne Änderungen im Java-Programm können bis zu 16 Kanäle verwendet werden. Dies ist nur begrenzt weil nur 16 verschiedene Farben für die unterschiedlichen Graphen definiert wurden. Grundsätzlich wäre die Kanalanzahl erweiterbar. Bitte beachten, dass nur nummerische Werte (Int, float, long etc…) ausgelesen werden (PC-seitig wird in float umgewandelt).
 
 # Installation
