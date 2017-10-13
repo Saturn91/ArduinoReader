@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import com.saturn91.arduinoReader.Main;
 import com.saturn91.logger.Log;
 
 import gnu.io.CommPortIdentifier;
@@ -89,6 +90,13 @@ public class ArduinoReader implements SerialPortEventListener{
 	 * Sets up the connection with the Arduino
 	 */
 	public void init() {
+		
+		
+		if(Main.isPi()) {
+			System.setProperty("gnu.io.rxtx.SerialPorts", "/dev/ttyACM0");	//Setup System on RapsberryPi
+			Log.printLn("Start ArduinoReader for RaspberryPI!", getClass().getSimpleName(), 0);
+		}
+		
 		
 		buffer = new ArrayList<TimeStampedStringMessage>();			//initialize Buffer
 
